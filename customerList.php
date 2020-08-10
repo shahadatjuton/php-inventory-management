@@ -10,14 +10,14 @@ $fm = new Format();
 //Delete user================
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "DELETE FROM units WHERE id = $id";
+    $sql = "DELETE FROM customers WHERE id = $id";
     $deleteData = $db->delete($sql);
-    header('location: categoryList.php');
+    header('location: customerList.php');
 
 }
 
-$sql = "SELECT * FROM units";
-$units = $db->retrieve($sql);
+$sql = "SELECT * FROM customers";
+$customers = $db->retrieve($sql);
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -27,12 +27,12 @@ $units = $db->retrieve($sql);
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Manage Unit</h1>
+                    <h1 class="m-0 text-dark">Manage Customer</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Unit</li>
+                        <li class="breadcrumb-item active">Customer</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -50,9 +50,9 @@ $units = $db->retrieve($sql);
                     <!-- Custom tabs (Charts with tabs)-->
                     <div class="card">
                         <div class="card-header">
-                            <h4>Unit List</h4>
-                            <a class="btn btn-success btn-sm float-right " href="">
-                                <i class="fa fa-plus-circle"> Add Unit </i>
+                            <h4>Customer List</h4>
+                            <a class="btn btn-success btn-sm float-right " href="createCustomer.php">
+                                <i class="fa fa-plus-circle"> Add Customer </i>
                             </a>
                         </div><!-- /.card-header -->
                         <div class="card-body">
@@ -61,19 +61,25 @@ $units = $db->retrieve($sql);
                                 <tr>
                                     <th>SL No</th>
                                     <th>Name</th>
+                                    <th>E-mail</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach($units as $key=>$unit) {?>
+                                <?php foreach($customers as $key=>$customer) {?>
                                 <tr>
                                     <td><?php echo $key +1 ?></td>
-                                    <td><?php echo $unit['name'] ?></td>
+                                    <td><?php echo $customer['name'] ?></td>
+                                    <td><?php echo $customer['email'] ?></td>
+                                    <td><?php echo $customer['phone'] ?></td>
+                                    <td><?php echo $customer['address'] ?></td>
                                     <td>
-                                        <a href="editCategory.php?id=<?php echo $unit['id'] ?>" class="btn btn-primary btn-sm" title="Edit">
+                                        <a href="editCustomer.php?id=<?php echo $customer['id'] ?>" class="btn btn-primary btn-sm" title="Edit">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a href="categoryList.php?id=<?php echo $unit['id'] ?>" class="btn btn-danger btn-sm" title="Delete">
+                                        <a href="customerList.php?id=<?php echo $customer['id'] ?>" class="btn btn-danger btn-sm" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
 <!--                                        <a href="{{route('admin.category.edit',$category->id)}}" class="btn btn-primary btn-sm" title="Edit">-->

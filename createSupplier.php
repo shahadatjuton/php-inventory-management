@@ -5,25 +5,26 @@ include 'config/config.php';
 include 'lib/db.php';
 include  'helpers/format.php';
 
-$id = $_GET['id'];
 $db = new Database();
 $fm = new Format();
-$sql = "SELECT * FROM units WHERE id = $id";
-$unit = $db->retrieve($sql)->fetch_assoc();
-
-//Update user =======================
-if(isset($_POST['updateCategory'])){
+//Create Supplier =======================
+if(isset($_POST['createSupplier'])){
     $name  =  mysqli_real_escape_string ($db->link, $_POST['name']);
-    if($name == '' ){
+    $email  =  mysqli_real_escape_string ($db->link, $_POST['email']);
+    $phone  =  mysqli_real_escape_string ($db->link, $_POST['phone']);
+    $address  =  mysqli_real_escape_string ($db->link, $_POST['address']);
+    $created_by  =  1;
+
+    if($name == ''|| $email == '' || $phone == '' || $address == '' ){
         $error = "Field must not be empty!!";
     }else{
-        $sql = "UPDATE units SET name='$name' WHERE id= $id";
-        $update = $db->update($sql);
-        if ($update){
-            echo "Unit Updated Successfully!";
-//            header("location: categoryList.php");
+        $sql = "INSERT INTO suppliers (name,email,phone,address) VALUES('$name', '$email', '$phone', '$address')";
+        $create = $db->insert($sql);
+        if ($create){
+            echo "Supplier Created Successfully!";
+//            header('location: categoryList.php');
         }else{
-            echo "Unit Does Not Updated!";
+            echo "Supplier Does Not Created!";
         }
     }
 }
@@ -36,12 +37,12 @@ if(isset($_POST['updateCategory'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Unit</h1>
+            <h1 class="m-0 text-dark">Manage Supplier</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Unit</li>
+              <li class="breadcrumb-item active">Supplier</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -59,25 +60,38 @@ if(isset($_POST['updateCategory'])){
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
-               <h4>Update Unit</h4>
-                  <a class="btn btn-success btn-sm float-right " href="categoryList.php">
-                      <i class="fa fa-list"> Unit List</i>
+               <h4>Add Supplier</h4>
+                  <a class="btn btn-success btn-sm float-right " href="supplierList.php">
+                      <i class="fa fa-list"> Supplier List</i>
                   </a>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <form action="editCategory.php?id=<?php echo $unit['id'] ?>" method="POST">
-                    <div class="form-row">
+                <form action="createSupplier.php" method="post" id="createUser">
 
-                        <!-- /.form-group -->
-                        <div class="form-group col-md-6 offset-3">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="<?php echo $unit['name'] ?>">
+                            <input type="text" name="name" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>E-mail</label>
+                            <input type="email" name="email" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Phone</label>
+                            <input type="text" name="phone" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Address</label>
+                            <input type="text" name="address" class="form-control">
                         </div>
                         <div class="form-group col-md-4 offset-5">
-                            <a href="categoryList.php" class="btn btn-dark">Back</a>
-                            <button type="submit" name="updateCategory" class="btn btn-success">Update</button>
+                            <a href="supplierList.php" class="btn btn-dark">Back</a>
+                            <button type="submit" name="createSupplier" class="btn btn-success">Create</button>
                         </div>
+
                     </div>
+
                 </form>
               </div><!-- /.card-body -->
             </div>
@@ -98,16 +112,39 @@ if(isset($_POST['updateCategory'])){
 
             $('#createUser').validate({
                 rules: {
+
                     name: {
                         required: true,
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                    },
+                    phone: {
+                        required: true,
+
+                    },
+                    address: {
+                        required: true,
+
                     },
 
                 },
                 messages: {
+
                     name: {
                         required: "Please enter a name"
                     },
-
+                    email: {
+                        required: "Please enter a email address",
+                        email: "Please enter a vaild email address"
+                    },
+                    phone: {
+                        required: "Please enter a contact number"
+                    },
+                    address: {
+                        required: "Please provide the address"
+                    },
                 },
                 errorElement: 'span',
                 errorPlacement: function (error, element) {
@@ -123,6 +160,4 @@ if(isset($_POST['updateCategory'])){
             });
         });
     </script>
-
 <?php include 'inc/footer.php'; ?>
-
