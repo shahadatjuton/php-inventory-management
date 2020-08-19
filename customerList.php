@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
 
 }
 
-$sql = "SELECT * FROM customers";
+$sql = "SELECT * FROM customers ORDER BY id DESC";
 $customers = $db->retrieve($sql);
 ?>
 

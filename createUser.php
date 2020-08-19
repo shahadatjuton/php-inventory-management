@@ -59,7 +59,7 @@ if(isset($_POST['createUser'])){
             <div class="card">
               <div class="card-header">
                <h4>Add User</h4>
-                  <a class="btn btn-success btn-sm float-right " href="{{route('user.index')}}">
+                  <a class="btn btn-success btn-sm float-right " href="userList.php">
                       <i class="fa fa-list"> User List</i>
                   </a>
               </div><!-- /.card-header -->

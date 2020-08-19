@@ -5,35 +5,17 @@ include 'config/config.php';
 include 'lib/db.php';
 
 $db = new Database();
+$user_id = $_SESSION['user_id'];
 
-//Retrieve Data ================================
-$sql = "SELECT * FROM products
-ORDER BY id DESC";
-$products = $db->retrieve($sql);
+//$sql = "SELECT * FROM orders
+//INNER JOIN order_details ON order_details.order_id = orders.id
+//INNER JOIN users ON users.id = orders.user_id
+//INNER JOIN products ON products.id = order_details.product_id
+//WHERE user_id = $user_id";
 
-
-//Delete Product================
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $sql = "DELETE FROM products WHERE id = $id";
-    $deleteData = $db->delete($sql);
-    if ($deleteData){
-        echo "Product deleted successfully!";
-    }else{
-        echo "Product does not deleted";
-    }
-//    header('location: categoryList.php');
-
-}
-
-//$sql = "SELECT products.*, categories.name, suppliers.name, units.name
-//        FROM products , categories, suppliers, units
-//        INNER JOIN categories , suppliers, units
-//        ON posts.category_id = categories.id,
-//        posts.supplier_id = suppliers.id,
-//        posts.unit_id = units.id
-//        ORDER BY posts.id DESC ";
-
+$sql = "SELECT * FROM orders
+INNER JOIN users ON users.id = orders.user_id";
+$orders = $db->retrieve($sql);
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -43,12 +25,12 @@ if (isset($_GET['id'])) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Product</h1>
+            <h1 class="m-0 text-dark">Manage Order</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Product</li>
+              <li class="breadcrumb-item active">Order</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -66,9 +48,9 @@ if (isset($_GET['id'])) {
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
-               <h4>Product List</h4>
-                  <a class="btn btn-success btn-sm float-right " href="createProduct.php">
-                      <i class="fa fa-plus-circle"> Add Product</i>
+               <h4>Order List</h4>
+                  <a class="btn btn-success btn-sm float-right " href="createOrder.php">
+                      <i class="fa fa-plus-circle"> Add Order</i>
                   </a>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -76,37 +58,25 @@ if (isset($_GET['id'])) {
                     <thead>
                     <tr>
                         <th>SL No</th>
-                        <th>Name</th>
-                        <th>Supplier</th>
-                        <th>Category</th>
-                        <th>Unit</th>
-                        <th>Quantity</th>
-                        <th>Buying Price</th>
-                        <th>Selling Price</th>
+                        <th>Order No</th>
+                        <th>Order By</th>
+                        <th>Date</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    if ($products) {
-                        foreach ($products as $key => $product) { ?>
+                    if ($orders) {
+                        foreach ($orders as $key => $order) { ?>
                             <tr>
                                 <td><?php echo $key + 1 ?></td>
-                                <td><?php echo $product['name'] ?></td>
-                                <td><?php echo $product['supplier'] ?></td>
-                                <td><?php echo $product['category'] ?></td>
-                                <td><?php echo $product['unit'] ?></td>
-                                <td><?php echo $product['quantity'] ?></td>
-                                <td><?php echo $product['buying_price'] ?></td>
-                                <td><?php echo $product['selling_price'] ?></td>
+                                <td><?php echo $order['order_id'] ?></td>
+                                <td><?php echo $order['name'] ?></td>
+                                <td><?php echo date("d-M-Y", strtotime($order['created_at'])) ?></td>
                                 <td>
-                                    <a href="editProduct.php?id=<?php echo $product['id'] ?>"
-                                       class="btn btn-primary btn-sm" title="Edit">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="productList.php?id=<?php echo $product['id'] ?>"
-                                       class="btn btn-danger btn-sm" title="Delete">
-                                        <i class="fa fa-trash"></i>
+                                    <a href="#"
+                                       class="btn btn-primary btn-sm" title="View">
+                                        <i class="fa fa-eye">View</i>
                                     </a>
                                     <!--                            <a href="{{route('user.edit',$user->id)}}" class="btn btn-primary btn-sm" title="Edit">-->
                                     <!--                                <i class="fa fa-edit"></i>-->

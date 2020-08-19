@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
 
 }
 
-$sql = "SELECT * FROM suppliers";
+$sql = "SELECT * FROM suppliers ORDER BY id DESC";
 $suppliers = $db->retrieve($sql);
 ?>
 

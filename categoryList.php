@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
 
 }
 
-$sql = "SELECT * FROM categories";
+$sql = "SELECT * FROM categories ORDER BY id DESC";
 $categories = $db->retrieve($sql);
 ?>
 

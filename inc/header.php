@@ -1,3 +1,7 @@
+<?php
+include 'lib/Session.php';
+Session::checkSession();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -29,14 +29,17 @@ if(isset($_POST['updateProduct'])){
     $supplier  =  mysqli_real_escape_string ($db->link, $_POST['supplier']);
     $unit =  mysqli_real_escape_string ($db->link, $_POST['unit']);
     $quantity =  mysqli_real_escape_string ($db->link, $_POST['quantity']);
+    $buying_price =  mysqli_real_escape_string ($db->link, $_POST['buying_price']);
+    $selling_price =  mysqli_real_escape_string ($db->link, $_POST['selling_price']);
     $updated_by  =  "Admin";
 
-
-    if($name == ''|| $category == '' || $supplier == '' || $unit == '' || $quantity == '' ){
+    if($name == ''|| $category == '' || $supplier == '' || $unit == '' ||
+        $quantity == '' || $buying_price==''|| $selling_price==''){
         $error = "Field must not be empty!!";
     }else{
         $sql = "UPDATE products SET name='$name', category= '$category', supplier='$supplier', 
-        unit='$unit' ,quantity='$quantity' , updated_by = '$updated_by' WHERE id= $id";
+        unit='$unit' ,quantity='$quantity',buying_price ='$buying_price',
+        selling_price ='$selling_price' , updated_by = '$updated_by' WHERE id= $id";
         $update = $db->update($sql);
         if ($update){
             echo "Product Updated Successfully!";
@@ -78,7 +81,7 @@ if(isset($_POST['updateProduct'])){
                     <!-- Custom tabs (Charts with tabs)-->
                     <div class="card">
                         <div class="card-header">
-                            <h4>Add Product</h4>
+                            <h4>Update Product</h4>
                             <a class="btn btn-success btn-sm float-right " href="productList.php">
                                 <i class="fa fa-list"> Product List</i>
                             </a>
@@ -94,6 +97,14 @@ if(isset($_POST['updateProduct'])){
                                     <div class="form-group col-md-6">
                                         <label>Quantity</label>
                                         <input type="number" name="quantity" class="form-control" value="<?php echo $product['quantity'] ?>">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Buying Price</label>
+                                        <input type="number" name="buying_price" min="0" class="form-control" value="<?php echo $product['buying_price'] ?>">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Selling Price</label>
+                                        <input type="number" name="selling_price" min="0" class="form-control" value="<?php echo $product['selling_price'] ?>">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Supplier</label>

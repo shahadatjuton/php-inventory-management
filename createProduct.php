@@ -23,14 +23,17 @@ if(isset($_POST['createProduct'])){
     $supplier  =  mysqli_real_escape_string ($db->link, $_POST['supplier']);
     $unit =  mysqli_real_escape_string ($db->link, $_POST['unit']);
     $quantity =  mysqli_real_escape_string ($db->link, $_POST['quantity']);
+    $buying_price =  mysqli_real_escape_string ($db->link, $_POST['buying_price']);
+    $selling_price =  mysqli_real_escape_string ($db->link, $_POST['selling_price']);
     $created_by  =  "Admin";
 
 
-    if($name == ''|| $category == '' || $supplier == '' || $unit == '' || $quantity == '' ){
+    if($name == ''|| $category == '' || $supplier == '' || $unit == '' ||
+        $quantity == '' || $buying_price==''|| $selling_price==''){
         $error = "Field must not be empty!!";
     }else{
-        $sql = "INSERT INTO products (name,category,supplier,unit, quantity,created_by) 
-                VALUES('$name', '$category', '$supplier', '$unit','$quantity','$created_by')";
+        $sql = "INSERT INTO products (name,category,supplier,unit, quantity,created_by,buying_price,selling_price) 
+                VALUES('$name', '$category', '$supplier', '$unit','$quantity','$created_by','$buying_price','$selling_price')";
         $create = $db->insert($sql);
         if ($create){
             echo "Product Created Successfully!";
@@ -88,6 +91,14 @@ if(isset($_POST['createProduct'])){
                         <div class="form-group col-md-6">
                             <label>Quantity</label>
                             <input type="number" name="quantity" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Buying Price</label>
+                            <input type="number" name="buying_price" min="0" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Selling Price</label>
+                            <input type="number" name="selling_price" min="0" class="form-control">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Supplier</label>

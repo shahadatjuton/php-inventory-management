@@ -8,8 +8,13 @@ include  'helpers/format.php';
 $db = new Database();
 $fm = new Format();
 
-$sql = "SELECT * FROM users";
-$posts = $db->retrieve($sql);
+$sql = "SELECT * FROM products";
+$products = $db->retrieve($sql);
+$count_product = mysqli_num_rows($products);
+
+$sql = "SELECT * FROM orders";
+$result = $db->retrieve($sql);
+$count_order = mysqli_num_rows($result);
 ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -36,13 +41,13 @@ $posts = $db->retrieve($sql);
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-6 col-6">
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3><?php echo $count_order?></h3>
 
-                                <p>New Orders</p>
+                                <p>Total Orders</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
@@ -51,13 +56,13 @@ $posts = $db->retrieve($sql);
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-6 col-6">
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                <h3><?php echo $count_product?></h3>
 
-                                <p>Bounce Rate</p>
+                                <p>Total Products</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
@@ -66,35 +71,35 @@ $posts = $db->retrieve($sql);
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-lg-3 col-6">
+<!--                    <div class="col-lg-3 col-6">-->
                         <!-- small box -->
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>44</h3>
-
-                                <p>User Registrations</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
+<!--                        <div class="small-box bg-warning">-->
+<!--                            <div class="inner">-->
+<!--                                <h3>44</h3>-->
+<!---->
+<!--                                <p>User Registrations</p>-->
+<!--                            </div>-->
+<!--                            <div class="icon">-->
+<!--                                <i class="ion ion-person-add"></i>-->
+<!--                            </div>-->
+<!--                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <!-- ./col -->
-                    <div class="col-lg-3 col-6">
+<!--                    <div class="col-lg-3 col-6">-->
                         <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>65</h3>
-
-                                <p>Unique Visitors</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
+<!--                        <div class="small-box bg-danger">-->
+<!--                            <div class="inner">-->
+<!--                                <h3>65</h3>-->
+<!---->
+<!--                                <p>Unique Visitors</p>-->
+<!--                            </div>-->
+<!--                            <div class="icon">-->
+<!--                                <i class="ion ion-pie-graph"></i>-->
+<!--                            </div>-->
+<!--                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
@@ -107,6 +112,25 @@ $posts = $db->retrieve($sql);
                             <div class="card-header">
                             </div><!-- /.card-header -->
                             <div class="card-body">
+                                <table id="example1" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>SL No</th>
+                                        <th>Name</th>
+                                        <th>Stock</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($products as $key=>$product) {?>
+                                        <tr>
+                                            <td><?php echo $key +1 ?></td>
+                                            <td><?php echo $product['name'] ?></td>
+                                            <td><?php echo $product['quantity'] ?></td>
+
+                                        </tr>
+                                    <?php } ?>
+                                    </tbody>
+                                </table>
                             </div><!-- /.card-body -->
                         </div>
                         <!-- /.card -->

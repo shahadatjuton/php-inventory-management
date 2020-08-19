@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
 }
 
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM users ORDER BY id DESC";
 $users = $db->retrieve($sql);
 ?>
 <!-- Content Wrapper. Contains page content -->
