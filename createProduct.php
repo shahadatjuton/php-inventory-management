@@ -7,6 +7,7 @@ include  'helpers/format.php';
 
 $db = new Database();
 $fm = new Format();
+$user_id = $_SESSION['user_id'];
 //Retrieve data for create products   =======================
 $sql = "SELECT * FROM categories";
 $categories = $db->retrieve($sql);
@@ -25,15 +26,15 @@ if(isset($_POST['createProduct'])){
     $quantity =  mysqli_real_escape_string ($db->link, $_POST['quantity']);
     $buying_price =  mysqli_real_escape_string ($db->link, $_POST['buying_price']);
     $selling_price =  mysqli_real_escape_string ($db->link, $_POST['selling_price']);
-    $created_by  =  "Admin";
-
+    $created_by  =  $user_id;
+    $date = date('Y-m-d H:i:s');
 
     if($name == ''|| $category == '' || $supplier == '' || $unit == '' ||
         $quantity == '' || $buying_price==''|| $selling_price==''){
         $error = "Field must not be empty!!";
     }else{
-        $sql = "INSERT INTO products (name,category,supplier,unit, quantity,created_by,buying_price,selling_price) 
-                VALUES('$name', '$category', '$supplier', '$unit','$quantity','$created_by','$buying_price','$selling_price')";
+        $sql = "INSERT INTO products (name,category,supplier,unit, quantity,created_by,buying_price,selling_price,created_at) 
+                VALUES('$name', '$category', '$supplier', '$unit','$quantity','$created_by','$buying_price','$selling_price','$date')";
         $create = $db->insert($sql);
         if ($create){
             echo "Product Created Successfully!";

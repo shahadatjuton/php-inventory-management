@@ -117,7 +117,7 @@ $count_order = mysqli_num_rows($result);
                                     <tr>
                                         <th>SL No</th>
                                         <th>Name</th>
-                                        <th>Stock</th>
+                                        <th class="text-center">Stock</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -125,8 +125,7 @@ $count_order = mysqli_num_rows($result);
                                         <tr>
                                             <td><?php echo $key +1 ?></td>
                                             <td><?php echo $product['name'] ?></td>
-                                            <td><?php echo $product['quantity'] ?></td>
-
+                                            <td class="bg-danger text-center"><?php echo $product['quantity'] ?></td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>

@@ -19,7 +19,7 @@
                 }
 
 
-                ?>" class="d-block"><?php echo $_SESSION['user_name'];?></a>
+                ?>" class="d-block ml-4" ><?php echo strtoupper($_SESSION['user_name']); ?></a>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
                 ?>
                 <li class="nav-item has-treeview menu-open]">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fas fa-user-circle"></i>
                         <p>
                             User Management
                             <i class="right fas fa-angle-left"></i>
@@ -51,7 +51,7 @@
                 </li>
                 <li class="nav-item has-treeview menu-open]">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fa fa-connectdevelop" aria-hidden="true"></i>
                         <p>
                             Category Management
                             <i class="right fas fa-angle-left"></i>
@@ -68,7 +68,7 @@
                 </li>
                 <li class="nav-item has-treeview menu-open]">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fas fa-balance-scale-right"></i>
                         <p>
                             Unit Management
                             <i class="right fas fa-angle-left"></i>
@@ -85,7 +85,7 @@
                 </li>
                 <li class="nav-item has-treeview menu-open]">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         <p>
                             Suppliers Management
                             <i class="right fas fa-angle-left"></i>
@@ -100,27 +100,27 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview menu-open]">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Customers Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="customerList.php" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Customer List</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+<!--                <li class="nav-item has-treeview menu-open]">-->
+<!--                    <a href="#" class="nav-link ">-->
+<!--                        <i class="nav-icon fas fa-tachometer-alt"></i>-->
+<!--                        <p>-->
+<!--                            Customers Management-->
+<!--                            <i class="right fas fa-angle-left"></i>-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                    <ul class="nav nav-treeview">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a href="customerList.php" class="nav-link active">-->
+<!--                                <i class="far fa-circle nav-icon"></i>-->
+<!--                                <p>Customer List</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
 
                 <li class="nav-item has-treeview menu-open]">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fa fa-snowflake-o" aria-hidden="true"></i>
                         <p>
                             Products Management
                             <i class="right fas fa-angle-left"></i>
@@ -140,7 +140,7 @@
                 ?>
                 <li class="nav-item has-treeview menu-open]">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fas fa-cart-plus"></i>
                         <p>
                             Orders Management
                             <i class="right fas fa-angle-left"></i>
@@ -156,13 +156,55 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview menu-open]">
+                    <a href="#" class="nav-link ">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>
+                            Low  Stock
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="lowStock.php" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Low Stock</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview menu-open]">
+                    <a href="#" class="nav-link ">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>
+                            Report
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="salesReport.php" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sales Report</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="purchaseReport.php" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Purchase Report</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview menu-open]">
                     <a href="logout.php" class="nav-link ">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fas fa-sign-out-alt"></i>
                         <p>
                             Log Out
                         </p>
                     </a>
                 </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

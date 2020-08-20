@@ -32,7 +32,7 @@ if (isset($_GET['order_id'])) {
 }
 
 
-//Create Supplier =======================
+//add Product into session =======================
 if(isset($_POST['addProduct'])){
 
     $product_id  =  mysqli_real_escape_string ($db->link, $_POST['product_id']);
@@ -48,8 +48,9 @@ if(isset($_POST['addProduct'])){
 //        $sql = "SELECT * FROM products WHERE id = $product_id";
 //        $cart_products = $db->retrieve($sql);
         $sql = "SELECT * FROM products WHERE id= $product_id";
-        $productForPrice = $db->retrieve($sql);
-        $product_price = $productForPrice->selling_price;
+        $result = $db->retrieve($sql);
+        $productForPrice = $result->fetch_assoc();
+        $product_price = $productForPrice['selling_price'];
         $total = $product_price * $quantity;
         $date = date('Y-m-d H:i:s');
         $sql = "INSERT INTO session (product_id,order_quantity,user_id,total,date) 
@@ -97,7 +98,7 @@ VALUES('$product_id', '$quantity','$user_id','$total','$date')";
                   </a>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <form action="createOrder.php" method="post" id="createUser">
+                <form action="orderAction.php" method="post" id="createUser">
 
                     <div class="form-row">
 
@@ -162,7 +163,7 @@ VALUES('$product_id', '$quantity','$user_id','$total','$date')";
                                         <?php echo $cart_product['order_quantity']*$cart_product['selling_price'] ?>
                                     </td>
                                     <td>
-                                        <a href="createOrder.php?order_id=<?php echo $cart_product['session_id'] ?>"
+                                        <a href="orderAction.php?order_id=<?php echo $cart_product['session_id'] ?>"
                                            class="btn btn-danger btn-sm" title="Delete">
                                             <i class="fa fa-trash"></i>
                                         </a>
