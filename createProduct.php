@@ -1,6 +1,6 @@
 <?php
 include 'inc/header.php';
-include 'inc/sidebar.php';
+//include 'inc/sidebar.php';
 include 'config/config.php';
 include 'lib/db.php';
 include  'helpers/format.php';

@@ -106,10 +106,6 @@ $units = $db->retrieve($sql);
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-@endsection
-
-@push('js')
 <script type="text/javascript">
 
     function deletedata(id) {

@@ -51,7 +51,7 @@
                 </li>
                 <li class="nav-item has-treeview menu-open]">
                     <a href="#" class="nav-link ">
-                        <i class="fa fa-connectdevelop" aria-hidden="true"></i>
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
                         <p>
                             Category Management
                             <i class="right fas fa-angle-left"></i>
@@ -120,7 +120,7 @@
 
                 <li class="nav-item has-treeview menu-open]">
                     <a href="#" class="nav-link ">
-                        <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+                        <i class="fas fa-pallet"></i>
                         <p>
                             Products Management
                             <i class="right fas fa-angle-left"></i>

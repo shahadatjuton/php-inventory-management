@@ -1,6 +1,6 @@
 <?php
 include 'inc/header.php';
-include 'inc/sidebar.php';
+//include 'inc/sidebar.php';
 include 'config/config.php';
 include 'lib/db.php';
 include  'helpers/format.php';
@@ -26,8 +26,8 @@ if(isset($_POST['updateSupplier'])){
         address='$address' , updated_by = '$updated_by' WHERE id= $id";
         $update = $db->update($sql);
         if ($update){
-            echo "Supplier Updated Successfully!";
-//            header('location: categoryList.php');
+
+            header("location: supplierList.php");
         }else{
             echo "Supplier Does Not Updated!";
         }
@@ -92,7 +92,7 @@ if(isset($_POST['updateSupplier'])){
                                     </div>
                                     <div class="form-group col-md-4 offset-5">
                                         <a href="supplierList.php" class="btn btn-dark">Back</a>
-                                        <button type="submit" name="updateSupplier" class="btn btn-success">Create</button>
+                                        <button type="submit" name="updateSupplier" class="btn btn-success">Update</button>
                                     </div>
 
                                 </div>

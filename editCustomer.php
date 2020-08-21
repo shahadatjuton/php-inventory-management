@@ -1,6 +1,6 @@
 <?php
 include 'inc/header.php';
-include 'inc/sidebar.php';
+//include 'inc/sidebar.php';
 include 'config/config.php';
 include 'lib/db.php';
 include  'helpers/format.php';
@@ -26,8 +26,7 @@ if(isset($_POST['updateCustomer'])){
         address='$address' , updated_by = '$updated_by' WHERE id= $id";
         $update = $db->update($sql);
         if ($update){
-            echo "Customer Updated Successfully!";
-//            header('location: categoryList.php');
+            header("location: customerList.php");
         }else{
             echo "Customer Does Not Updated!";
         }
@@ -66,7 +65,7 @@ if(isset($_POST['updateCustomer'])){
                     <div class="card">
                         <div class="card-header">
                             <h4>Update Customer</h4>
-                            <a class="btn btn-success btn-sm float-right " href="supplierList.php">
+                            <a class="btn btn-success btn-sm float-right " href="customerList.php">
                                 <i class="fa fa-list"> Customer List</i>
                             </a>
                         </div><!-- /.card-header -->

@@ -1,6 +1,6 @@
 <?php
 include 'inc/header.php';
-include 'inc/sidebar.php';
+//include 'inc/sidebar.php';
 include 'config/config.php';
 include 'lib/db.php';
 include  'helpers/format.php';
@@ -20,8 +20,7 @@ if(isset($_POST['updateCategory'])){
         $sql = "UPDATE units SET name='$name' WHERE id= $id";
         $update = $db->update($sql);
         if ($update){
-            echo "Unit Updated Successfully!";
-//            header("location: categoryList.php");
+            header("location: unitList.php");
         }else{
             echo "Unit Does Not Updated!";
         }

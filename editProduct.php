@@ -1,6 +1,6 @@
 <?php
 include 'inc/header.php';
-include 'inc/sidebar.php';
+//include 'inc/sidebar.php';
 include 'config/config.php';
 include 'lib/db.php';
 include  'helpers/format.php';
@@ -42,8 +42,7 @@ if(isset($_POST['updateProduct'])){
         selling_price ='$selling_price' , updated_by = '$updated_by' WHERE id= $id";
         $update = $db->update($sql);
         if ($update){
-            echo "Product Updated Successfully!";
-//            header('location: categoryList.php');
+            header("location: productList.php");
         }else{
             echo "Product Does Not Updated!";
         }

@@ -1,6 +1,6 @@
 <?php
 include 'inc/header.php';
-include 'inc/sidebar.php';
+//include 'inc/sidebar.php';
 include 'config/config.php';
 include 'lib/db.php';
 include  'helpers/format.php';
@@ -13,14 +13,14 @@ if(isset($_POST['createUser'])){
     $email = mysqli_real_escape_string ($db->link, $_POST['email']);
     $phone = mysqli_real_escape_string ($db->link, $_POST['phone']);
     $role = mysqli_real_escape_string ($db->link, $_POST['role']);
+    $password = mysqli_real_escape_string ($db->link, $_POST['password']);
     if($name == '' || $email =='' || $phone =='' || $role == '' ){
         $error = "Field must not be empty!!";
     }else{
-        $sql = "INSERT INTO users (name,email,phone,user_type) VALUES('$name', '$email', '$phone','$role')";
+        $sql = "INSERT INTO users (name,email,phone,user_type,password) VALUES('$name', '$email', '$phone','$role','$password')";
         $create = $db->insert($sql);
         if ($create){
-            echo "User Created Successfully!";
-//            header('location: categoryList.php');
+            header("location: userList.php");
         }else{
             echo "User Does Not Created!";
         }
@@ -67,17 +67,21 @@ if(isset($_POST['createUser'])){
                 <form action="createUser.php" method="post" id="createUser">
 
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Name</label>
                             <input type="text" name="name" class="form-control" >
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>E-mail</label>
                             <input type="email" name="email" class="form-control" >
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Phone</label>
                             <input type="text" name="phone" class="form-control" >
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" >
                         </div>
                         <div class="form-group col-md-6">
                             <label>Role</label>

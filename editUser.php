@@ -1,11 +1,12 @@
 <?php
 include 'inc/header.php';
-include 'inc/sidebar.php';
+//include 'inc/sidebar.php';
 include 'config/config.php';
 include 'lib/db.php';
 include  'helpers/format.php';
 
 $id = $_GET['id'];
+
 $db = new Database();
 $fm = new Format();
 $sql = "SELECT * FROM users WHERE id = $id";
@@ -17,14 +18,16 @@ if(isset($_POST['updateUser'])){
     $email = mysqli_real_escape_string ($db->link, $_POST['email']);
     $phone = mysqli_real_escape_string ($db->link, $_POST['phone']);
     $role = mysqli_real_escape_string ($db->link, $_POST['role']);
+    $password = mysqli_real_escape_string ($db->link, $_POST['password']);
+
     if($name == '' || $email =='' || $phone =='' || $role == '' ){
         $error = "Field must not be empty!!";
     }else{
-        $sql = "UPDATE users SET name='$name', email= '$email', phone='$phone',user_type='$role' WHERE id= $id";
+        $sql = "UPDATE users SET name='$name', email= '$email', phone='$phone',user_type='$role',password='$password' WHERE id= $id";
         $update = $db->update($sql);
         if ($update){
             echo "User Updated Successfully!";
-//            header("location: categoryList.php");
+            header("location: userList.php");
         }else{
             echo "User Does Not Updated!";
         }
@@ -63,7 +66,7 @@ if(isset($_POST['updateUser'])){
             <div class="card">
               <div class="card-header">
                <h4>Update User</h4>
-                  <a class="btn btn-success btn-sm float-right " href="{{route('user.index')}}">
+                  <a class="btn btn-success btn-sm float-right " href="userList.php">
                       <i class="fa fa-list"> User List</i>
                   </a>
               </div><!-- /.card-header -->
@@ -72,17 +75,21 @@ if(isset($_POST['updateUser'])){
                     <div class="form-row">
 
                         <!-- /.form-group -->
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="<?php echo $user['name'] ?>">
+                            <input type="text" name="name" class="form-control" value="<?php echo $user['name'] ?>" >
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>E-mail</label>
-                            <input type="email" name="email" class="form-control" value="<?php echo $user['email'] ?>">
+                            <input type="email" name="email" class="form-control"  value="<?php echo $user['email'] ?>">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Phone</label>
                             <input type="text" name="phone" class="form-control" value="<?php echo $user['phone'] ?>">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" >
                         </div>
                         <div class="form-group col-md-6">
                             <label>Role</label>
