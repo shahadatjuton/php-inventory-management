@@ -135,6 +135,46 @@
                         </li>
                     </ul>
                 </li>
+                    <li class="nav-item has-treeview menu-open]">
+                        <a href="#" class="nav-link ">
+                            <i class="fas fa-shopping-basket"></i>
+                            <p>
+                                Low  Stock
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="lowStock.php" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Low Stock</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview menu-open]">
+                        <a href="#" class="nav-link ">
+                            <i class="fas fa-chart-bar"></i>
+                            <p>
+                                Report
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="salesReport.php" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Sales Report</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="purchaseReport.php" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Purchase Report</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <?php
                 }
                 ?>
@@ -151,46 +191,6 @@
                             <a href="orderList.php" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Order List</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview menu-open]">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-shopping-basket"></i>
-                        <p>
-                            Low  Stock
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="lowStock.php" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Low Stock</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview menu-open]">
-                    <a href="#" class="nav-link ">
-                        <i class="fas fa-chart-bar"></i>
-                        <p>
-                            Report
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="salesReport.php" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Sales Report</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="purchaseReport.php" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Purchase Report</p>
                             </a>
                         </li>
                     </ul>

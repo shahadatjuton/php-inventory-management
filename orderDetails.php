@@ -6,16 +6,18 @@ include 'lib/db.php';
 
 $db = new Database();
 $user_id = $_SESSION['user_id'];
-
+$id = $_GET['order_id'];
 //$sql = "SELECT * FROM orders
 //INNER JOIN order_details ON order_details.order_id = orders.id
 //INNER JOIN users ON users.id = orders.user_id
 //INNER JOIN products ON products.id = order_details.product_id
 //WHERE user_id = $user_id";
 
-$sql = "SELECT * FROM orders
-INNER JOIN users ON users.id = orders.user_id";
+$sql = "SELECT * FROM `order_details` 
+INNER JOIN products ON products.id = order_details.product_id
+WHERE order_id = $id ";
 $orders = $db->retrieve($sql);
+
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -25,12 +27,11 @@ $orders = $db->retrieve($sql);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Order</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Order</li>
+              <li class="breadcrumb-item active">Order Details</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -48,10 +49,7 @@ $orders = $db->retrieve($sql);
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
-               <h4>Order List</h4>
-                  <a class="btn btn-success btn-sm float-right " href="createOrder.php">
-                      <i class="fa fa-plus-circle"> Add Order</i>
-                  </a>
+               <h4>Order Details</h4>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-hover">
@@ -59,9 +57,12 @@ $orders = $db->retrieve($sql);
                     <tr>
                         <th>SL No</th>
                         <th>Order No</th>
-                        <th>Order By</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
                         <th>Date</th>
-                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -72,13 +73,11 @@ $orders = $db->retrieve($sql);
                                 <td><?php echo $key + 1 ?></td>
                                 <td><?php echo $order['order_id'] ?></td>
                                 <td><?php echo $order['name'] ?></td>
-                                <td><?php echo date("d-M-Y", strtotime($order['created_at'])) ?></td>
-                                <td>
-                                    <a href="orderDetails.php?order_id=<?php echo $order['order_id'] ?>"
-                                       class="btn btn-primary btn-sm" title="View">
-                                        <i class="fa fa-eye">View</i>
-                                    </a>
-                                </td>
+                                <td><?php echo $order['category'] ?></td>
+                                <td><?php echo $order['selling_price'] ?></td>
+                                <td><?php echo $order['quantity'] ?><?php echo $order['unit'] ?></td>
+                                <td><?php echo $order['quantity'] ?><?php echo $order['selling_price'] ?></td>
+                                <td><?php echo date("d-M-Y", strtotime($order['date'])) ?></td>
                             </tr>
                         <?php }//end foreach
                     } else {?>

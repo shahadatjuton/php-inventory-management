@@ -117,6 +117,7 @@ VALUES('$product_id', '$quantity','$user_id','$total','$date')";
                         </div>
 
                         <div class="form-group col-md-4 offset-5">
+                            <a href="orderList.php" class="btn btn-dark">Back</a>
                             <button type="submit" name="addProduct" class="btn btn-success">Add Product</button>
                         </div>
 
